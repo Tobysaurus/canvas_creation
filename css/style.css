@@ -1,0 +1,124 @@
+/* Reset styles to remove margin/padding and avoid scrollbars */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    overflow: hidden; /* Prevent scrolling */
+    font-family: 'Playfair Display', serif;
+}
+
+/* Ensure all images are responsive */
+.item {
+    position: absolute;
+    max-width: 100%; /* Ensure images do not overflow */
+    height: auto;
+    object-fit: contain;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    z-index: 10;
+}
+
+    /* Flowers class to ensure they are always on top */
+    .item.flower {
+        z-index: 20; /* Set a higher z-index for flowers */
+    }
+
+    /* Send to back */
+    .item.sendtoback {
+        z-index: 1;
+    }
+
+    /* Text items with dynamic width */
+    .item.text-item {
+        font-size: 2rem;
+        font-weight: 100;
+        color: #333;
+        text-align: center;
+        position: absolute;
+        z-index: 20; /* Ensure text is on top of everything (flowers and images) */
+        transition: opacity 1s ease-in-out, color 0.3s ease;
+        background-color: rgba(255, 255, 255, 0.7); /* Subtle white background with transparency */
+        border-radius: 5px; /* Optional: adds rounded corners */
+        width: auto; /* Allow width to adjust based on text content */
+        max-width: 90%; /* Optionally limit width to 90% of viewport */
+        padding: 8px 16px; /* 8px top/bottom, 16px left/right */
+    }
+
+/* Styling for italicized text */
+.italic-text {
+    font-style: italic;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+/* Optional: Styling for links */
+.item a {
+    text-decoration: none;
+    color: #333;
+    transition: color 0.3s ease;
+}
+
+    .item a:hover {
+        text-decoration: underline;
+    }
+
+/* Underline effect for hover on italic text */
+.italic-text:hover {
+    text-decoration: underline;
+    color: #cc5500; /* Burnt orange */
+}
+
+/* Override for specific images */
+img[alt="Expandicity"],
+img[alt="Evernew"],
+img[alt="bread"],
+img[alt="model01"] {
+    max-width: none; /* Override the default */
+}
+
+img[alt="Expandicity"] {
+    width: 20%;
+}
+
+img[alt="Evernew"] {
+    width: 15%;
+}
+
+img[alt="bread"] {
+    width: 25%;
+}
+
+img[alt="model01"] {
+    width: 15%;
+}
+
+
+/* Media Queries */
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+    .item {
+        max-width: 20vw; /* Use viewport width instead of pixels */
+    }
+
+        .item.text-item {
+            font-size: 1.5rem; /* Smaller font size for mobile */
+            padding: 6px 12px; /* Adjust padding */
+        }
+}
+
+/* Desktop Styles */
+@media (min-width: 769px) {
+    .item {
+        max-width: 20vw; /* Maintain relative sizing */
+    }
+
+        .item.text-item {
+            font-size: 2rem; /* Larger font size for desktop */
+            padding: 8px 16px; /* Adjust padding */
+        }
+}
