@@ -71,9 +71,9 @@
     // Example of adding normal, italicized, and link text items dynamically
     createTextItem('Architecture portfolio', '', 'https://drive.google.com/file/d/1EcakcLBTHmU2aIF6EBkQ4q43UA_spymR/view?usp=sharing'); // Add a link item
     createTextItem('click this for chaos', 'italic-text'); // Add italicized version
-    createTextItem('UI/UX Portfolio', '', 'https://drive.google.com/file/d/162EAinzIp3gJpUL3y20MuOvlUyglq4ju/view?usp=sharing'); // Add a link item
+    createTextItem('UI/UX portfolio', '', 'https://drive.google.com/file/d/162EAinzIp3gJpUL3y20MuOvlUyglq4ju/view?usp=sharing'); // Add a link item
     createTextItem('Content editing', '', 'https://www.nationalgallery.sg/'); // Add a link item
-    createTextItem('Research report sample', '', 'https://docs.google.com/document/d/1-iIp9XepJ9OQBxKkB82kUy2F6s7q5j3Q/edit?usp=sharing&ouid=111209296856160298490&rtpof=true&sd=true');
+    createTextItem('Research report sample', '', 'https://drive.google.com/file/d/1UGQcKoL4quUWV3GaSfVLHWwP7u0Tr6wr/view?usp=sharing');
     createTextItem('Resume', '', 'https://drive.google.com/file/d/1h0WFqV1uw9QhjCt8RV4erWrC_6P8PjSv/view?usp=sharing'); 
 
     // Add click event listener to refresh the page when "chaos" is clicked
