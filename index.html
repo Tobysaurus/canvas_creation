@@ -1,34 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interactive Material Board</title>
     <link rel="stylesheet" href="css/style.css">
 
-    <!-- Include Playfair Display font -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@100&display=swap" rel="stylesheet">
+    <!-- Playfair Display font -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@100;400&display=swap" rel="stylesheet">
+
+    <!-- Merriweather and Roboto fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
 
 </head>
+
 <body>
 
-    <img src="images/20260206_plasticearrings_01.jpg" alt="Thumbnail 1" class="item">
-    <img src="images/20260206_plasticearrings_02.jpg" alt="Thumbnail 2" class="item">
-    <!-- Add more images here -->
-    <img src="images/flower01.webp" alt="Flower" class="item flower">
-    <img src="images/flower02.webp" alt="Flower" class="item flower">
-    <img src="images/flower03.webp" alt="Flower" class="item flower">
-    <img src="images/flower04.png" alt="Flower" class="item flower">
+    <!-- Images -->
+    <img src="images/20260206_plasticearrings_01.jpg" alt="Thumbnail 1" class="item" data-date="2025-02-04">
+    <img src="images/20260206_plasticearrings_02.jpg" alt="Thumbnail 2" class="item" data-date="2025-02-04">
 
+    <!--Commenting out th flowers
+    <img src="images/flower01.webp" alt="Flower" class="item top" data-date="2025-02-13">
+    <img src="images/flower02.webp" alt="Flower" class="item top" data-date="2025-02-13">
+    <img src="images/flower03.webp" alt="Flower" class="item top" data-date="2025-02-13">
+    <img src="images/flower04.png" alt="Flower" class="item top" data-date="2025-02-13">
+        -->
+    <!-- UX/UI images -->
+    <img src="images/Expandicity_01.png" alt="Expandicity" class="item top" data-date="2022-09-23" data-text="Expandicity, a gamified personal budgeting app">
+    <img src="images/Evernew_Mobile_01_transparent.png" alt="Evernew" class="item top" data-date="2023-04-27" data-text="A website redesign for a secondhand bookstore">
+    <img src="images/NGS_Publications_01.png" alt="NGS_Publications_01" class="item top" data-date="2023-08-04" onclick="openPopup(this.src)" )">
+    <img src="images/NGS_Publications_02_transparent.png" alt="NGS_Publications_02" class="item top" data-date="2023-08-04">
+    <img src="images/NGS_archi_01.png" alt="NGS_archi_01" class="item top" data-date="2024-10-15">
 
-    <img src="images/Expandicity_01.png" alt="Expandicity" class="item">
-    <img src="images/Evernew_Mobile_01.png" alt="Evernew" class="item">
-    <img src="images/painting01.png" alt="painting01" class="item">
-    <img src="images/painting02.png" alt="painting02" class="item">
-    <img src="images/bread-transparent.png" alt="bread" class="item">
-    <img src="images/Model01.png" alt="model01" class="item sendtoback">
+    <!-- THINGS Images -->
+    <img src="images/painting01.png" alt="painting01" class="item" data-date="2021-06-01">
+    <img src="images/painting02.png" alt="painting02" class="item" data-date="2022-06-01">
+    <img src="images/bread-transparent.png" alt="bread" class="item" data-date="2025-01-08">
+    <img src="images/sew01.png" alt="sew01" class="item" data-date="2009-01-01">
+    <img src="images/sew02.png" alt="sew02" class="item" data-date="2009-01-01">
+    <img src="images/pots01.png" alt="pots01" class="item" data-date="2023-01-01">
+
+    <!-- Travel Images -->
+    <img src="images/travel01.png" alt="travel01" class="item" data-date="2013-05-01">
+
+    <!-- Photography -->
+    <img src="images/photo01_20241228.jpg" alt="photo01_20241228" class="item" data-date="2024-12-28">
+    <img src="images/photo02_20241228.jpg" alt="photo02_20241228" class="item" data-date="2024-12-28">
+    <img src="images/photo03_20241228.jpg" alt="photo03_20241228" class="item" data-date="2024-12-28">
+    <img src="images/photo04_20250217.jpg" alt="photo04_20250217" class="item" data-date="2025-02-17">
+
+    <!-- Archi images -->
+    <img src="images/Model01.png" alt="model01" class="item" data-date="2011-11-01">
+    <img src="images/Model02.png" alt="model02" class="item" data-date="2011-11-01">
+    <img src="images/Model03.png" alt="model03" class="item" data-date="2011-11-01">
+    <img src="images/Model04.png" alt="model04" class="item" data-date="2011-11-01">
+    <img src="images/Model05.png" alt="model05" class="item" data-date="2011-11-01">
+    <img src="images/Model06.png" alt="model06" class="item" data-date="2011-11-01">
+    <img src="images/varyingreptition01.png" alt="varyingreptition01" class="item" data-date="2010-04-01">
+    <img src="images/varyingrepetition02.png" alt="varyingreptition02" class="item" data-date="2010-04-01">
+    <img src="images/varyingrepetition03.png" alt="varyingreptition03" class="item" data-date="2010-04-01">
+    <img src="images/btbrown01.png" alt="btbrown01" class="item" data-date="2012-05-01">
+    <img src="images/btbrown02.png" alt="btbrown02" class="item" data-date="2012-05-01">
+    <img src="images/btbrown03.png" alt="btbrown03" class="item" data-date="2012-05-01">
+    <img src="images/btbrown04.png" alt="btbrown04" class="item" data-date="2012-05-01">
+    <img src="images/btbrown05.png" alt="btbrown05" class="item" data-date="2012-05-01">
+    <img src="images/kerala01.png" alt="kerala01" class="item" data-date="2013-10-01">
+    <img src="images/exhib01.png" alt="exhib01" class="item" data-date="2012-02-01">
+    <img src="images/exhib02.png" alt="exhib02" class="item" data-date="2012-02-01">
+    <img src="images/yishunpoly01.png" alt="yishunpoly01" class="item" data-date="2018-01-01">
+    <img src="images/Archi_2023-12-20.png" alt="Archi_2023-12-20" class="item" data-date="2023-12-20">
+    <img src="images/expo01.png" alt="expo01" class="item" data-date="2021-01-01">
+    <img src="images/expo02.png" alt="expo02" class="item" data-date="2021-01-01">
+    <img src="images/expo03.png" alt="expo03" class="item" data-date="2021-01-01">
+
+    <!-- Overlay -->
+    <div class="image-overlay">
+        <img class="overlay-image">
+        <div class="textbox"></div> <!-- Empty div where JavaScript will insert the text -->
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/interactjs@1.10.11/dist/interact.min.js"></script>
     <script src="js/script.js"></script>
+
+    $ git add index.html
+    $ git commit -m "Add index.html file"
+    $ git push -u origin main
+
 </body>
+
+
+
 </html>
