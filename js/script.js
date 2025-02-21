@@ -69,7 +69,7 @@
     }
 
     // Example of adding normal, italicized, and link text items dynamically
-    createTextItem('Árchitecture portfolio', '', 'https://drive.google.com/file/d/1EcakcLBTHmU2aIF6EBkQ4q43UA_spymR/view?usp=sharing'); // Add a link item
+    createTextItem('Architecture portfolio', '', 'https://drive.google.com/file/d/1EcakcLBTHmU2aIF6EBkQ4q43UA_spymR/view?usp=sharing'); // Add a link item
     createTextItem('click this for chaos', 'italic-text'); // Add italicized version
     createTextItem('UI/UX Portfolio', '', 'https://drive.google.com/file/d/162EAinzIp3gJpUL3y20MuOvlUyglq4ju/view?usp=sharing'); // Add a link item
     createTextItem('Content editing', '', 'https://www.nationalgallery.sg/'); // Add a link item
