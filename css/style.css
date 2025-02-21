@@ -150,7 +150,7 @@ html, body {
 /* Responsive design for smaller screens */
 @media (max-width: 768px) {
     .item.text-item {
-        font-size: 0.75rem; /* Adjust to desired font size for small screens */
+        font-size: 1rem; /* Adjust to desired font size for small screens */
         padding: 6px 12px;
     }
 }
@@ -158,7 +158,7 @@ html, body {
 /* For larger screens */
 @media (min-width: 769px) {
     .item.text-item {
-        font-size: 1.5rem; /* Adjust this for larger screens */
+        font-size: 1rem; /* Adjust this for larger screens */
         padding: 8px 16px;
     }
 }
