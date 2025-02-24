@@ -59,6 +59,8 @@
             const link = document.createElement('a');
             link.href = linkHref;
             link.textContent = textContent;
+            link.target = "_blank"; // Opens in a new tab/window
+            link.rel = "noopener noreferrer"; // Security best practice 
             textItem.appendChild(link); // Append the link inside the div
         } else {
             textItem.textContent = textContent; // Directly set text if no link
@@ -74,7 +76,7 @@
     createTextItem('UI/UX portfolio', '', 'https://drive.google.com/file/d/162EAinzIp3gJpUL3y20MuOvlUyglq4ju/view?usp=sharing'); // Add a link item
     createTextItem('Content editing', '', 'https://www.nationalgallery.sg/'); // Add a link item
     createTextItem('Research report sample', '', 'https://drive.google.com/file/d/1UGQcKoL4quUWV3GaSfVLHWwP7u0Tr6wr/view?usp=sharing');
-    createTextItem('Resume', '', 'https://drive.google.com/file/d/1h0WFqV1uw9QhjCt8RV4erWrC_6P8PjSv/view?usp=sharing'); 
+    createTextItem('Resume', '', 'https://drive.google.com/file/d/1h0WFqV1uw9QhjCt8RV4erWrC_6P8PjSv/view?usp=sharing');
 
     // Add click event listener to refresh the page when "chaos" is clicked
     const chaosText = document.querySelector('.text-item.italic-text');
@@ -107,7 +109,7 @@
 document.addEventListener("DOMContentLoaded", function () {
     const overlay = document.querySelector('.image-overlay');
     const overlayImage = document.querySelector('.overlay-image');
- // **comment: temporarily removing the entire textbox for now   const textbox = document.querySelector('.textbox');
+    // **comment: temporarily removing the entire textbox for now   const textbox = document.querySelector('.textbox');
     const galleryItems = document.querySelectorAll('.item');
 
     let originalX, originalY, originalWidth, originalHeight; // Define variables in higher scope
@@ -115,11 +117,11 @@ document.addEventListener("DOMContentLoaded", function () {
     galleryItems.forEach(item => {
         item.addEventListener('click', (e) => {
             const imageSrc = e.target.src;
-     // **      const imageText = e.target.getAttribute('data-text') || '';
+            // **      const imageText = e.target.getAttribute('data-text') || '';
 
             // Show the overlay and update the textbox
-     //**       overlay.classList.add("active"); // Ensure overlay is visible
-      //**      textbox.textContent = imageText ? imageText : "No description available"; // Update textbox with image text
+            //**       overlay.classList.add("active"); // Ensure overlay is visible
+            //**      textbox.textContent = imageText ? imageText : "No description available"; // Update textbox with image text
 
             // Get original image position and store in global variables
             const rect = e.target.getBoundingClientRect();
