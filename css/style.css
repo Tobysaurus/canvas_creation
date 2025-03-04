@@ -1,18 +1,49 @@
-/* Reset styles to remove margin/padding and avoid scrollbars */
+/* ========== RESET ========== */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Body styles */
+/* ========== BODY ========== */
 html, body {
     height: 100%;
     font-family: 'Playfair Display', serif;
-    overflow: hidden; /* Prevent scrolling */
+    overflow: hidden; /* Keep no scrolling if desired */
 }
 
-/* Ensure all images are responsive */
+/* ========== TOP BAR ========== */
+.top-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px; /* Adjust as needed */
+    background-color: #fff; /* White background */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    border-bottom: 1px solid black; /* black line at bottom */
+    z-index: 999;
+}
+
+.top-link {
+    font-size: 1rem;
+    color: #303030;
+    text-decoration: none;
+    padding: 5px 10px;
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+}
+
+    .top-link:hover {
+        background-color: #303030;
+        color: white;
+        border-color: #303030;
+    }
+
+/* ========== IMAGE & TEXT STYLES ========== */
 .item {
     position: absolute;
     max-width: 100%;
@@ -20,29 +51,29 @@ html, body {
     object-fit: contain;
     opacity: 0; /* Initially invisible */
     z-index: 10;
-    cursor: pointer; /* Change cursor to a pointer on hover */
-    transition: transform 0.6s ease, opacity 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
+    cursor: pointer;
+    transition: transform 0.6s ease, opacity 0.3s ease, box-shadow 0.3s ease;
 }
 
     .item:hover {
-        transform: scale(1.05); /* Slightly enlarges the image */
-        opacity: 0.9; /* Slightly reduces opacity */
-        /* box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.6); /* Commenting out the glowing effect as it doesn't work with the overlapping images*/
+        transform: scale(1.05);
+        opacity: 0.9;
     }
 
-    /* Items always on top */
+    /* Items with .top for higher z-index if needed */
     .item.top {
         z-index: 20;
     }
 
+/* ========== OVERLAY ========== */
 .image-overlay {
-    display: none; /* Initially hidden */
+    display: none; /* Hidden by default */
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    /* background: rgba(0, 0, 0, 0.5); */
+    /* background: rgba(0, 0, 0, 0.5); // if you want a darker overlay */
     justify-content: center;
     align-items: center;
     z-index: 1000;
@@ -52,24 +83,13 @@ html, body {
 
 .overlay-image {
     position: absolute;
-    transform-origin: center center; /* Ensures smooth scaling from original position */
-    max-width: 90vw; /* Maximum width is 90% of the viewport width */
-    max-height: 90vh; /* Maximum height is 90% of the viewport height */
-    width: 100%; /* Make the width 100% of the parent element */
-    height: auto; /* Let the height adjust proportionally */
-    object-fit: contain; /* Ensures the image fits within the max dimensions without distortion */
+    transform-origin: center center;
+    max-width: 90vw;
+    max-height: 90vh;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
     transition: top 0.5s ease-in-out, left 0.5s ease-in-out, width 0.5s ease-in-out, height 0.5s ease-in-out, transform 0.5s ease-in-out;
-}
-
-
-@keyframes scaleImage {
-    0% {
-        transform: scale(0);
-    }
-
-    100% {
-        transform: scale(1);
-    }
 }
 
 .textbox {
@@ -92,47 +112,41 @@ html, body {
     display: block;
 }
 
-/* Text styling */
+/* ========== TEXT ITEM ========== */
 .item.text-item {
-    font-size: 2rem;
+    font-size: 1rem;
     font-weight: 100;
-    color: #303030; /* Default text color */
+    color: #303030;
     text-align: center;
     position: absolute;
     z-index: 100;
-    background-color: rgba(255, 255, 255, 0.9); /* White background with slight opacity */
-    border: 1px solid #303030; /* Charcoal gray border */
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 1px solid #303030;
     border-radius: 5px;
     padding: 8px 16px;
-    transition: all 0.3s ease; /* Smooth transition for color and background */
-    cursor: pointer; /* Makes the whole box look clickable */
+    transition: all 0.3s ease;
+    cursor: pointer;
 }
 
-    /* Ensures links inside the text box inherit styling */
     .item.text-item a,
     .item.text-item a:visited,
     .item.text-item a:active {
-        color: inherit; /* Inherits the color from .item.text-item */
-        text-decoration: none; /* Remove underline */
+        color: inherit;
+        text-decoration: none;
     }
 
-    /* Hover effect: change background and text color for the whole box */
     .item.text-item:hover {
-        background-color: #303030; /* Change background color on hover */
-        color: white; /* Change text color on hover */
-        border: 1px solid #303030; /* Change border color */
+        background-color: #303030;
+        color: white;
+        border: 1px solid #303030;
     }
 
-        /* Ensure links inside text boxes also change color on hover */
         .item.text-item:hover a {
-            color: white; /* Make sure links also turn white when hovered */
-            text-decoration: underline; /* Underline link on hover */
+            color: white;
+            text-decoration: underline;
         }
 
-
-
-
-/* Italic text hover effect */
+/* Italic text (chaos trigger) */
 .italic-text {
     font-style: italic;
     cursor: pointer;
@@ -144,21 +158,27 @@ html, body {
         color: #303030;
     }
 
-
-
-
-/* Responsive design for smaller screens */
+/* ========== RESPONSIVE ========== */
 @media (max-width: 768px) {
+    .top-link {
+        font-size: 0.8rem;
+        padding: 3px 8px;
+    }
+
     .item.text-item {
-        font-size: 1rem; /* Adjust to desired font size for small screens */
+        font-size: 0.8rem;
         padding: 6px 12px;
     }
 }
 
-/* For larger screens */
 @media (min-width: 769px) {
+    .top-link {
+        font-size: 1rem;
+        padding: 5px 10px;
+    }
+
     .item.text-item {
-        font-size: 1rem; /* Adjust this for larger screens */
+        font-size: 1rem;
         padding: 8px 16px;
     }
 }

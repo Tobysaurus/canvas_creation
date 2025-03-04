@@ -2,35 +2,46 @@
     const items = [];
     const placedItems = [];
     const images = document.querySelectorAll(".item");
-    const overlay = document.querySelector('.image-overlay');
-    const overlayImage = document.querySelector('.overlay-image');
-    const textbox = document.querySelector('.textbox');
+    const overlay = document.querySelector(".image-overlay");
+    const overlayImage = document.querySelector(".overlay-image");
+    const textbox = document.querySelector(".textbox");
 
-    images.forEach((img, index) => {
+    // We define the height of the top bar
+    const topBarHeight = 60; // same as .top-bar height in CSS
+
+    // =============== 1. Positioning Images ===============
+    images.forEach((img) => {
         img.onload = function () {
             const dateString = img.getAttribute("data-date");
             const { width, height } = getImageSizeFromDate(dateString, img);
+
+            // set image's width & height
             img.style.width = `${width}px`;
             img.style.height = `${height}px`;
-            img.style.opacity = 1; // Make image visible once dimensions are set
-            img.style.top = `${Math.random() * (window.innerHeight - height)}px`; // Random top position
-            img.style.left = `${Math.random() * (window.innerWidth - width)}px`; // Random left position
-        };
+            img.style.opacity = 1;
 
-        img.src = img.src; // Ensure images are loaded
+            // random top, ensuring images appear BELOW the top bar
+            const randomTop = topBarHeight + Math.random() * (window.innerHeight - topBarHeight - height - 20);
+            // random left
+            const randomLeft = Math.random() * (window.innerWidth - width - 20);
+
+            img.style.top = `${randomTop}px`;
+            img.style.left = `${randomLeft}px`;
+        };
+        // Force the browser to re-check the image
+        img.src = img.src;
     });
 
-    // Function to calculate image size based on date
+    // =============== 2. Calculating Image Size by Date ===============
     function getImageSizeFromDate(dateString, img) {
         const today = new Date();
         const imageDate = new Date(dateString);
 
         const timeDiff = today - imageDate;
-        const diffInDays = timeDiff / (1000 * 3600 * 24); // Convert milliseconds to days
+        const diffInDays = timeDiff / (1000 * 3600 * 24);
 
-        const minArea = 5000; // Older images
-        const maxArea = 25000; // Newest images
-
+        const minArea = 5000;
+        const maxArea = 25000;
         const scaledArea = minArea + (maxArea - minArea) * Math.max(0, 1 - diffInDays / 3650);
 
         const aspectRatio = img.naturalWidth / img.naturalHeight;
@@ -46,91 +57,85 @@
         return { width, height };
     }
 
-    // Function to create and add a text item to the page with optional class for styling
-    function createTextItem(textContent, className = '', linkHref = '') {
-        const textItem = document.createElement('div');
-        textItem.classList.add('item', 'text-item'); // Always add base classes
+    // =============== 3. Creating Text Items Dynamically ===============
+    function createTextItem(textContent, className = "", linkHref = "") {
+        const textItem = document.createElement("div");
+        textItem.classList.add("item", "text-item");
 
         if (className) {
-            textItem.classList.add(className); // Add any additional class like 'italic-text'
+            textItem.classList.add(className);
         }
 
         if (linkHref) {
-            const link = document.createElement('a');
+            const link = document.createElement("a");
             link.href = linkHref;
             link.textContent = textContent;
-            link.target = "_blank"; // Opens in a new tab/window
-            link.rel = "noopener noreferrer"; // Security best practice 
-            textItem.appendChild(link); // Append the link inside the div
+            link.target = "_blank";
+            link.rel = "noopener noreferrer";
+            textItem.appendChild(link);
         } else {
-            textItem.textContent = textContent; // Directly set text if no link
+            textItem.textContent = textContent;
         }
 
         document.body.appendChild(textItem);
-        items.push(textItem); // Add the text item to the items array
+        items.push(textItem);
     }
 
-    // Example of adding normal, italicized, and link text items dynamically
-    createTextItem('Architecture portfolio', '', 'https://drive.google.com/file/d/1EcakcLBTHmU2aIF6EBkQ4q43UA_spymR/view?usp=sharing'); // Add a link item
-    createTextItem('click this for chaos', 'italic-text'); // Add italicized version
-    createTextItem('UI/UX portfolio', '', 'https://drive.google.com/file/d/162EAinzIp3gJpUL3y20MuOvlUyglq4ju/view?usp=sharing'); // Add a link item
-    createTextItem('Content editing', '', 'https://www.nationalgallery.sg/'); // Add a link item
-    createTextItem('Research report sample', '', 'https://drive.google.com/file/d/1UGQcKoL4quUWV3GaSfVLHWwP7u0Tr6wr/view?usp=sharing');
-    createTextItem('Resume', '', 'https://drive.google.com/file/d/1h0WFqV1uw9QhjCt8RV4erWrC_6P8PjSv/view?usp=sharing');
+    // Only “click this for chaos” is random. 
+    // The top links are in .top-bar (HTML).
+    createTextItem("click this for chaos", "italic-text");
 
-    // Add click event listener to refresh the page when "chaos" is clicked
-    const chaosText = document.querySelector('.text-item.italic-text');
+    // =============== 4. "click this for chaos" => re-randomize images only ===============
+    const chaosText = document.querySelector(".text-item.italic-text");
     if (chaosText) {
-        chaosText.addEventListener('click', function () {
-            window.location.reload(); // Refresh the page
+        chaosText.addEventListener("click", function () {
+            // Re-randomize positions for all images (but not text items).
+            const imagesToShuffle = document.querySelectorAll(".item:not(.text-item)");
+            imagesToShuffle.forEach((img) => {
+                const w = parseFloat(img.style.width) || 50;
+                const h = parseFloat(img.style.height) || 50;
+
+                // random top => below top bar
+                const newTop = topBarHeight + Math.random() * (window.innerHeight - topBarHeight - h - 20);
+                const newLeft = Math.random() * (window.innerWidth - w - 20);
+
+                img.style.top = `${newTop}px`;
+                img.style.left = `${newLeft}px`;
+            });
         });
     }
 
-    // Position text items randomly within the viewport
-    items.forEach(item => {
-        const itemWidth = item.clientWidth;
-        const itemHeight = item.clientHeight;
+    // =============== 5. Position the newly created text item below top bar ===============
+    const textItems = document.querySelectorAll(".text-item");
+    textItems.forEach((textItem) => {
+        // skip if it's in top bar (not applicable here, but just in case)
+        const tw = textItem.clientWidth;
+        const th = textItem.clientHeight;
 
-        let randomX = Math.random() * (window.innerWidth - itemWidth - 20); // Added 20px padding
-        let randomY = Math.random() * (window.innerHeight - itemHeight - 20); // Added 20px padding
+        const rx = Math.random() * (window.innerWidth - tw - 20);
+        const ry = topBarHeight + Math.random() * (window.innerHeight - topBarHeight - th - 20);
 
-        item.style.left = `${randomX}px`;
-        item.style.top = `${randomY}px`;
-
-        placedItems.push({ x: randomX, y: randomY, width: itemWidth, height: itemHeight });
+        textItem.style.left = `${rx}px`;
+        textItem.style.top = `${ry}px`;
+        textItem.style.opacity = "1";
     });
 
-    // Smooth fade-in animation
-    items.forEach(item => item.style.opacity = '1');
-});
+    // =============== 6. Overlay for Enlarged Images ===============
+    let originalX, originalY, originalWidth, originalHeight;
 
-// code for overlay starts here
+    const galleryItems = document.querySelectorAll(".item");
+    galleryItems.forEach((item) => {
+        item.addEventListener("click", (e) => {
+            // Ensure we clicked an actual image
+            if (e.target.tagName !== "IMG") return;
 
-document.addEventListener("DOMContentLoaded", function () {
-    const overlay = document.querySelector('.image-overlay');
-    const overlayImage = document.querySelector('.overlay-image');
-    // **comment: temporarily removing the entire textbox for now   const textbox = document.querySelector('.textbox');
-    const galleryItems = document.querySelectorAll('.item');
-
-    let originalX, originalY, originalWidth, originalHeight; // Define variables in higher scope
-
-    galleryItems.forEach(item => {
-        item.addEventListener('click', (e) => {
             const imageSrc = e.target.src;
-            // **      const imageText = e.target.getAttribute('data-text') || '';
-
-            // Show the overlay and update the textbox
-            //**       overlay.classList.add("active"); // Ensure overlay is visible
-            //**      textbox.textContent = imageText ? imageText : "No description available"; // Update textbox with image text
-
-            // Get original image position and store in global variables
             const rect = e.target.getBoundingClientRect();
             originalX = rect.left + window.scrollX;
             originalY = rect.top + window.scrollY;
             originalWidth = rect.width;
             originalHeight = rect.height;
 
-            // Set overlay image properties
             overlayImage.src = imageSrc;
             overlayImage.style.position = "absolute";
             overlayImage.style.top = `${originalY}px`;
@@ -150,16 +155,14 @@ document.addEventListener("DOMContentLoaded", function () {
                 overlayImage.style.width = "80vw";
                 overlayImage.style.height = "auto";
                 overlayImage.style.transform = "translate(-50%, -50%) scale(1)";
-                textbox.style.opacity = "1";
+                if (textbox) textbox.style.opacity = "1";
             }, 10);
         });
     });
 
-
-    // Close overlay when clicking outside the image
-    overlay.addEventListener('click', (e) => {
+    // Close overlay when clicking outside the enlarged image
+    overlay.addEventListener("click", (e) => {
         if (e.target === overlay) {
-            // Animate back to original position
             overlayImage.style.top = `${originalY}px`;
             overlayImage.style.left = `${originalX}px`;
             overlayImage.style.width = `${originalWidth}px`;
@@ -168,7 +171,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             setTimeout(() => {
                 overlay.style.display = "none";
-                overlayImage.style.opacity = "0"; // Fade out smoothly
+                overlayImage.style.opacity = "0";
             }, 500);
         }
     });
