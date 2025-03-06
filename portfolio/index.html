@@ -1,13 +1,415 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My Portfolio</title>
-    <link rel="stylesheet" href="../css/style.css"> <!-- Link to main CSS -->
+
+    <!-- If you have a global stylesheet, link it here -->
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;700&display=swap">
+
+    <style>
+        /* Basic reset & body styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "IBM Plex Sans", Arial, sans-serif;
+            font-size: 12px;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.1;
+            overflow: auto; /* Keep no scrolling if desired */
+        }
+
+        header {
+            padding: 20px;
+            text-align: center;
+            background: #fff;
+            border-bottom: 1px solid #ccc;
+        }
+
+            header h1 {
+                margin-bottom: 0;
+            }
+
+        main {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Each project section is hidden & shifted for the slide-in effect */
+        .project {
+            margin-bottom: 60px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.9s ease, transform 0.9s ease;
+        }
+            /* Slide in once in view */
+            .project.slide-in {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            /* Force-in: make immediately visible (no transition) */
+            .project.force-in {
+                opacity: 1 !important;
+                transform: translateY(0) !important;
+                transition: none !important;
+            }
+
+        /* Two-column text at the top */
+        .text-two-col {
+            display: flex;
+            flex-wrap: wrap; /* allows wrapping on small screens */
+            gap: 20px;
+            margin-bottom: 20px; /* spacing before the image */
+            align-items: baseline; /* align columns on text baseline */
+        }
+
+            .text-two-col .column {
+                flex: 1 1 45%; /* each column ~45% width */
+                min-width: 250px; /* avoid columns getting too narrow */
+            }
+
+        /* The image below the two-column text */
+        .project-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border: 0px solid #ddd; /* don't need a border */
+            box-shadow: 0 0px 0px rgba(0,0,0,0.1); /* don't need a shadow */
+        }
+
+        .link {
+            color: #303030;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+            .link:hover {
+                background-color: #303030;
+                color: white;
+                border-color: #303030;
+            }
+
+        /* Responsive for smaller screens */
+        @media (max-width: 768px) {
+            .text-two-col {
+                flex-direction: column;
+            }
+
+                .text-two-col .column {
+                    flex: 1 1 100%;
+                }
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome to My Portfolio</h1>
-    <p>This is my portfolio page where I showcase my work. test test test</p>
-    <a href="../index.html">Back to Home</a> <!-- Back to main page -->
+
+
+    <main>
+        <!-- PROJECT 0 -->
+        <section class="project">
+            <div class="text-two-col">
+                <!-- Left column -->
+                <div class="column">
+                    <p>National Gallery Singapore website revamp</p> <!--For future reference, use h2 for a bigger font-->
+                    <br />
+                    <p>Website revamp with National Gallery Singapore</p>
+                    <p>Content editing and writing, wireframing and aligning of digital and physical user experience.</p>
+                </div>
+                <!-- Right column -->
+                <div class="column">
+                    <br /><br />
+                    <p>Year: 2024</p>
+                    <p>Working project</p>
+                    <p>Role: Content editor</p>
+                    <br />
+                    <p>
+                        <a href="https://www.nationalgallery.sg/" target="_blank" class="link" rel="noopener noreferrer">
+                            Visit the site
+                            <span class="arrow-box">&rarr;</span>
+                        </a>
+                    </p>
+
+
+                </div>
+            </div>
+            <div class="project-image">
+                <img src="../images/NGS_archi_01.png" alt="NGS">
+            </div>
+        </section>
+
+        <!-- PROJECT 1 -->
+        <section class="project">
+            <div class="text-two-col">
+                <!-- Left column -->
+                <div class="column">
+                    <p>Expandicity</p>
+                    <br />
+                    <p>A personal mobile budgeting app using gamification</p>
+                </div>
+                <!-- Right column -->
+                <div class="column">
+                    <br /><br />
+                    <p>Year: 2023</p>
+                    <p>Personal project</p>
+                </div>
+            </div>
+            <div class="project-image">
+                <img src="../images/Expandicity_01.png" alt="Expandicity">
+            </div>
+        </section>
+
+
+        <!-- PROJECT 2 -->
+        <section class="project">
+            <div class="text-two-col">
+                <!-- Left column -->
+                <div class="column">
+                    <p>Evernew Bookstore redesign</p>
+                    <br />
+                    <p>A redesign for a secondhand bookstore</p>
+                </div>
+                <!-- Right column -->
+                <div class="column">
+                    <br /><br />
+                    <p>Year: 2023</p>
+                    <p>Personal project</p>
+                </div>
+            </div>
+            <div class="project-image">
+                <img src="../images/Evernew_Desktop_02.png" alt="Evernew redesign">
+            </div>
+        </section>
+
+        <!-- PROJECT 3 -->
+        <section class="project">
+            <div class="text-two-col">
+                <!-- Left column -->
+                <div class="column">
+                    <p>Evernew</p>
+                    <br />
+                    <p>User research and redesign of National Gallery Singapore's publications page</p>
+                </div>
+                <!-- Right column -->
+                <div class="column">
+                    <br /><br />
+                    <p>Year: 2023</p>
+                    <p>Collaborators: Oscar, Wendy</p>
+                    <p>Pro-bono project</p>
+                </div>
+            </div>
+            <div class="project-image">
+                <img src="../images/NGS_Publications_01.png" alt="NGS redesign">
+            </div>
+        </section>
+
+        <!-- PROJECT 4 -->
+        <section class="project">
+            <div class="text-two-col">
+                <!-- Left column -->
+                <div class="column">
+                    <p>Bukit Brown Park</p>
+                    <br />
+                    <p>An anti-monument</p>
+                </div>
+                <!-- Right column -->
+                <div class="column">
+                    <br /><br />
+                    <p>Year: 2011</p>
+                    <p>Thesis project</p>
+                </div>
+            </div>
+            <div class="project-image">
+                <img src="../images/btbrown01.png" alt="Bukit Brown">
+                <br />
+                <img src="../images/btbrown02.png" alt="Bukit Brown">
+                <br />
+                <!-- Commenting this out because no one will understand it <img src="../images/btbrown03.png" alt="Bukit Brown"> -->
+            </div>
+        </section>
+
+        <!-- PROJECT 5 -->
+        <section class="project">
+            <div class="text-two-col">
+                <!-- Left column -->
+                <div class="column">
+                    <p>Varying repetition</p>
+                    <br />
+                    <p>Design of modular park rest stops</p>
+                </div>
+                <!-- Right column -->
+                <div class="column">
+                    <br /><br />
+                    <p>Year: 2010</p>
+                    <p>Academic design project</p>
+                </div>
+            </div>
+            <div class="project-image">
+                <img src="../images/varyingrepetition02.png" alt="Varying repetition">
+                <br />
+                <img src="../images/varyingrepetition03.png" alt="Varying repetition">
+                <br />
+                <!-- Commenting this out because no one will understand it <img src="../images/btbrown03.png" alt="Bukit Brown"> -->
+            </div>
+        </section>
+
+        <!-- PROJECT 6 -->
+        <section class="project">
+            <div class="text-two-col">
+                <!-- Left column -->
+                <div class="column">
+                    <p>Expo East Side Food Centre</p>
+                    <br />
+                    <p>A new food centre for the East.</p>
+                </div>
+                <!-- Right column -->
+                <div class="column">
+                    <br /><br />
+                    <p>Year: 2011</p>
+                    <p>Working project</p>
+                </div>
+            </div>
+            <div class="project-image">
+                <img src="../images/expo01.png" alt="Expo">
+                <br />
+                <img src="../images/expo02.png" alt="Expo">
+                <br />
+                <img src="../images/expo03.png" alt="Expo">
+            </div>
+        </section>
+
+        <!-- PROJECT 7 -->
+        <section class="project">
+            <div class="text-two-col">
+                <!-- Left column -->
+                <div class="column">
+                    <p>Art stage</p>
+                    <br />
+                    <p>Lounge and entry way</p>
+                    <p>Architect: WY-TO Architects</p>
+                    <p>role: drafter, modeller, site supervision</p>
+                </div>
+                <!-- Right column -->
+                <div class="column">
+                    <br /><br />
+                    <p>Year: 2012</p>
+                    <p>Working project</p>
+                </div>
+            </div>
+            <div class="project-image">
+                <img src="../images/exhib01.png" alt="Expo">
+            </div>
+        </section>
+
+        <!-- PROJECT 8 -->
+        <section class="project">
+            <div class="text-two-col">
+                <!-- Left column -->
+                <div class="column">
+                    <p>Secrets of the Tomb</p>
+                    <br />
+                    <p>Exhibition design</p>
+                    <p>Architect: WY-TO Architects</p>
+                    <p>role: drafter, modeller, design concept for exit</p>
+                </div>
+                <!-- Right column -->
+                <div class="column">
+                    <br /><br />
+                    <p>Year: 2012</p>
+                    <p>Working project</p>
+                </div>
+            </div>
+            <div class="project-image">
+                <img src="../images/exhib02.png" alt="Expo">
+            </div>
+        </section>
+
+        <!-- PROJECT 9 -->
+        <section class="project">
+            <div class="text-two-col">
+                <!-- Left column -->
+                <div class="column">
+                    <p>Yishun Polyclinic</p>
+                    <br />
+                    <p>Built Healthcare building</p>
+                    <p>Architect: RDC Architects</p>
+                    <p>role: Co-lead, main coordinator</p>
+                </div>
+                <!-- Right column -->
+                <div class="column">
+                    <br /><br />
+                    <p>Year: 2018</p>
+                    <p>Working project</p>
+                </div>
+            </div>
+            <div class="project-image">
+                <img src="../images/yishunpoly01.png" alt="Expo">
+            </div>
+        </section>
+
+        <!-- Add more projects as needed -->
+    </main>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const projectSections = document.querySelectorAll(".project");
+
+            // 1) Make items in the initial viewport appear immediately (no animation)
+            projectSections.forEach(section => {
+                if (isInViewport(section)) {
+                    section.classList.add("force-in"); // instantly visible, no transition
+                }
+            });
+
+            // 2) Observe for slide-in animations as user scrolls down
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // If it's not already forced in, add the slide-in animation
+                        if (!entry.target.classList.contains("force-in")) {
+                            entry.target.classList.add("slide-in");
+                        }
+                    }
+                });
+            }, {
+                threshold: 0.2
+            });
+
+            projectSections.forEach(section => observer.observe(section));
+
+            // 3) Reset everything once user returns to top (scrollY === 0)
+            window.addEventListener("scroll", () => {
+                if (window.scrollY === 0) {
+                    // Remove both 'slide-in' and 'force-in' from all projects
+                    projectSections.forEach(section => {
+                        section.classList.remove("slide-in", "force-in");
+                    });
+
+                    // Re-check which items are in the viewport at top
+                    projectSections.forEach(section => {
+                        if (isInViewport(section)) {
+                            section.classList.add("force-in");
+                        }
+                    });
+                }
+            });
+
+            // Updated helper function: consider an element in view if any part is visible.
+            function isInViewport(elem) {
+                const rect = elem.getBoundingClientRect();
+                return rect.top < (window.innerHeight || document.documentElement.clientHeight) &&
+                    rect.bottom >= 0;
+            }
+        });
+    </script>
+
 </body>
 </html>
