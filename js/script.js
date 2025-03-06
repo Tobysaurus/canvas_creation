@@ -83,7 +83,7 @@
 
     // Only “click this for chaos” is random. 
     // The top links are in .top-bar (HTML).
-    createTextItem("click this for chaos", "italic-text");
+    createTextItem("remix", "italic-text");
 
     // =============== 4. "click this for chaos" => re-randomize images only ===============
     const chaosText = document.querySelector(".text-item.italic-text");

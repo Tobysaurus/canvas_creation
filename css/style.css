@@ -8,7 +8,9 @@
 /* ========== BODY ========== */
 html, body {
     height: 100%;
-    font-family: 'Playfair Display', serif;
+    background-color: #F2F2F2;
+    font-size: 12px;
+    font-family: "IBM Plex Sans", 'Playfair Display', serif;
     overflow: hidden; /* Keep no scrolling if desired */
 }
 
@@ -18,18 +20,28 @@ html, body {
     top: 0;
     left: 0;
     width: 100%;
-    height: 60px; /* Adjust as needed */
-    background-color: #fff; /* White background */
+    height: 60px;
+    background-color: #F2F2F2;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: center; /* keeps the links centered */
     gap: 20px;
-    border-bottom: 1px solid black; /* black line at bottom */
+    border-bottom: 1px solid black;
     z-index: 999;
 }
 
-.top-link {
+.my-name {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
     font-size: 1rem;
+    font-weight: bold; /* optional */
+}
+
+
+.top-link {
+    /*font-size: 0.1rem; 20250306 prev this was 1.5rem */
     color: #303030;
     text-decoration: none;
     padding: 5px 10px;
