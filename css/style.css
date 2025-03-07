@@ -14,19 +14,19 @@ html, body {
     overflow: hidden; /* Keep no scrolling if desired */
 }
 
+/* Name in top-left */
 .my-name {
     position: absolute;
     top: 20px;
-    left: 20px;
+    left: 40px;
     font-size: 1rem;
-    font-weight: bold; /* optional */
 }
 
 /* ========== MENU BUTTON (Text Only) ========== */
 .menu-button {
     position: fixed;
     top: 20px;
-    right: 20px;
+    right: 40px;
     z-index: 9999; /* ensure it's above images */
     font-size: 1rem;
     color: #333;
@@ -34,27 +34,35 @@ html, body {
     background: none;
     border: none;
     padding: 0;
-    font-weight: normal;
 }
 
     .menu-button.hide {
         display: none;
     }
 
-/* ========== MENU OVERLAY (Covers Entire Screen) ========== */
+/* 
+   ========== MENU OVERLAY (No "display: none") ==========
+   We'll use opacity + pointer-events for smooth transitions 
+   instead of toggling display. 
+*/
 .menu-overlay {
     position: fixed;
     top: 0;
-    left: 0; /* covers the whole screen for "click outside" detection */
+    left: 0;
     width: 100%;
     height: 100%;
-    display: none; /* hidden by default */
-    background: rgba(0,0,0,0.1); /* slight overlay for outside area */
+    background: none; /* no dark overlay */
     z-index: 9998;
+    /* Start fully transparent and unclickable */
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.1s ease;
 }
 
     .menu-overlay.open {
-        display: block;
+        /* When open, become fully visible & clickable */
+        opacity: 1;
+        pointer-events: auto;
     }
 
 /* ========== MENU CONTENT (Slides from Right) ========== */
@@ -64,17 +72,20 @@ html, body {
     right: 0;
     width: 300px;
     height: 100%;
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: #F2F2F2;
     backdrop-filter: blur(5px);
     box-shadow: -2px 0 5px rgba(0,0,0,0.2);
-    padding: 60px 20px 20px; /* top space for close button */
-    transform: translateX(100%); /* off-screen to the right */
-    transition: transform 0.3s ease;
+    padding: 60px 20px 20px;
+    /* Off-screen by 100% width, so it's invisible horizontally */
+    transform: translateX(100%);
+    /* Slow 2s transition */
+    transition: transform 0.6s ease;
 }
 
-/* When overlay is open, slide the menu content in */
+/* Slide in from right when .open is on .menu-overlay */
 .menu-overlay.open .menu-content {
     transform: translateX(0);
+    transition: transform 0.6s ease;
 }
 
 /* ========== CLOSE BUTTON (X) ========== */
@@ -147,7 +158,7 @@ html, body {
     width: 100%;
     justify-content: center;
     align-items: center;
-    z-index: 10000; /* above everything else */
+    z-index: 10000;
     overflow: hidden;
     transition: opacity 0.3s ease;
 }

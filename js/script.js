@@ -174,28 +174,28 @@
         }
     });
 
-    // =============== 7. Slide-Out Menu Logic ===============
+    // =============== 5. Slide-Out Menu Logic ===============
     const menuButton = document.querySelector('.menu-button');
     const menuOverlay = document.querySelector('.menu-overlay');
-    const closeButton = document.querySelector('.close-button');
     const menuContent = document.querySelector('.menu-content');
+    const closeButton = document.querySelector('.close-button');
 
     // Open the menu
     menuButton.addEventListener('click', () => {
+        // Show overlay with .open
         menuOverlay.classList.add('open');
-        // Hide the menu text when menu is open
+        // Hide the "MENU" text
         menuButton.classList.add('hide');
     });
 
-    // Close the menu when clicking the X
+    // Close the menu (click the X)
     closeButton.addEventListener('click', () => {
         menuOverlay.classList.remove('open');
         menuButton.classList.remove('hide');
     });
 
-    // Close the menu if user clicks outside the .menu-content
+    // Close the menu if user clicks outside .menu-content
     menuOverlay.addEventListener('click', (e) => {
-        // if the click target is the overlay (not the menu content or close button)
         if (!menuContent.contains(e.target) && e.target !== closeButton) {
             menuOverlay.classList.remove('open');
             menuButton.classList.remove('hide');
