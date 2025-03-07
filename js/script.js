@@ -1,13 +1,11 @@
 ﻿document.addEventListener("DOMContentLoaded", function () {
-    const items = [];
-    const placedItems = [];
     const images = document.querySelectorAll(".item");
     const overlay = document.querySelector(".image-overlay");
     const overlayImage = document.querySelector(".overlay-image");
     const textbox = document.querySelector(".textbox");
 
-    // We define the height of the top bar
-    const topBarHeight = 60; // same as .top-bar height in CSS
+    // No scrolling => topBarHeight for name offset if desired
+    const topBarHeight = 0;
 
     // =============== 1. Positioning Images ===============
     images.forEach((img) => {
@@ -20,10 +18,13 @@
             img.style.height = `${height}px`;
             img.style.opacity = 1;
 
-            // random top, ensuring images appear BELOW the top bar
-            const randomTop = topBarHeight + Math.random() * (window.innerHeight - topBarHeight - height - 20);
-            // random left
-            const randomLeft = Math.random() * (window.innerWidth - width - 20);
+            // random top => clamp so image is fully on screen
+            let randomTop = topBarHeight + Math.random() * (window.innerHeight - height - 20 - topBarHeight);
+            let randomLeft = Math.random() * (window.innerWidth - width - 20);
+
+            // ensure no negative positions if the screen is small
+            randomTop = Math.max(0, randomTop);
+            randomLeft = Math.max(0, randomLeft);
 
             img.style.top = `${randomTop}px`;
             img.style.left = `${randomLeft}px`;
@@ -42,7 +43,8 @@
 
         const minArea = 5000;
         const maxArea = 25000;
-        const scaledArea = minArea + (maxArea - minArea) * Math.max(0, 1 - diffInDays / 3650);
+        const scaledArea =
+            minArea + (maxArea - minArea) * Math.max(0, 1 - diffInDays / 3650);
 
         const aspectRatio = img.naturalWidth / img.naturalHeight;
         let width = Math.sqrt(scaledArea * aspectRatio);
@@ -57,7 +59,7 @@
         return { width, height };
     }
 
-    // =============== 3. Creating Text Items Dynamically ===============
+    // =============== 3. "Chaos" Text (Optional) ===============
     function createTextItem(textContent, className = "", linkHref = "") {
         const textItem = document.createElement("div");
         textItem.classList.add("item", "text-item");
@@ -65,7 +67,6 @@
         if (className) {
             textItem.classList.add(className);
         }
-
         if (linkHref) {
             const link = document.createElement("a");
             link.href = linkHref;
@@ -76,27 +77,42 @@
         } else {
             textItem.textContent = textContent;
         }
-
         document.body.appendChild(textItem);
-        items.push(textItem);
     }
 
-    // Only “click this for chaos” is random. 
+    // Add the "remix" text
     createTextItem("remix", "italic-text");
 
-    // =============== 4. "click this for chaos" => re-randomize images only ===============
+    // Position it randomly
+    const textItems = document.querySelectorAll(".text-item");
+    textItems.forEach((textItem) => {
+        const tw = textItem.clientWidth;
+        const th = textItem.clientHeight;
+        let rx = Math.random() * (window.innerWidth - tw - 20);
+        let ry = topBarHeight + Math.random() * (window.innerHeight - th - 20 - topBarHeight);
+
+        rx = Math.max(0, rx);
+        ry = Math.max(0, ry);
+
+        textItem.style.left = `${rx}px`;
+        textItem.style.top = `${ry}px`;
+        textItem.style.opacity = "1";
+    });
+
+    // "Chaos" => re-randomize images
     const chaosText = document.querySelector(".text-item.italic-text");
     if (chaosText) {
         chaosText.addEventListener("click", function () {
-            // Re-randomize positions for all images (but not text items).
             const imagesToShuffle = document.querySelectorAll(".item:not(.text-item)");
             imagesToShuffle.forEach((img) => {
                 const w = parseFloat(img.style.width) || 50;
                 const h = parseFloat(img.style.height) || 50;
 
-                // random top => below top bar
-                const newTop = topBarHeight + Math.random() * (window.innerHeight - topBarHeight - h - 20);
-                const newLeft = Math.random() * (window.innerWidth - w - 20);
+                let newTop = Math.random() * (window.innerHeight - h - 20 - topBarHeight);
+                let newLeft = Math.random() * (window.innerWidth - w - 20);
+
+                newTop = Math.max(0, newTop);
+                newLeft = Math.max(0, newLeft);
 
                 img.style.top = `${newTop}px`;
                 img.style.left = `${newLeft}px`;
@@ -104,27 +120,12 @@
         });
     }
 
-    // =============== 5. Position the newly created text item below top bar ===============
-    const textItems = document.querySelectorAll(".text-item");
-    textItems.forEach((textItem) => {
-        const tw = textItem.clientWidth;
-        const th = textItem.clientHeight;
-
-        const rx = Math.random() * (window.innerWidth - tw - 20);
-        const ry = topBarHeight + Math.random() * (window.innerHeight - topBarHeight - th - 20);
-
-        textItem.style.left = `${rx}px`;
-        textItem.style.top = `${ry}px`;
-        textItem.style.opacity = "1";
-    });
-
-    // =============== 6. Overlay for Enlarged Images ===============
+    // =============== 4. Overlay for Enlarged Images ===============
     let originalX, originalY, originalWidth, originalHeight;
-
     const galleryItems = document.querySelectorAll(".item");
+
     galleryItems.forEach((item) => {
         item.addEventListener("click", (e) => {
-            // Ensure we clicked an actual image
             if (e.target.tagName !== "IMG") return;
 
             const imageSrc = e.target.src;
@@ -158,7 +159,7 @@
         });
     });
 
-    // Close overlay when clicking outside the enlarged image
+    // Close overlay when clicking outside
     overlay.addEventListener("click", (e) => {
         if (e.target === overlay) {
             overlayImage.style.top = `${originalY}px`;
@@ -182,19 +183,17 @@
 
     // Open the menu
     menuButton.addEventListener('click', () => {
-        // Show overlay with .open
         menuOverlay.classList.add('open');
-        // Hide the "MENU" text
         menuButton.classList.add('hide');
     });
 
-    // Close the menu (click the X)
+    // Close the menu (X)
     closeButton.addEventListener('click', () => {
         menuOverlay.classList.remove('open');
         menuButton.classList.remove('hide');
     });
 
-    // Close the menu if user clicks outside .menu-content
+    // Close if user clicks outside .menu-content
     menuOverlay.addEventListener('click', (e) => {
         if (!menuContent.contains(e.target) && e.target !== closeButton) {
             menuOverlay.classList.remove('open');

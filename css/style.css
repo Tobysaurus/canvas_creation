@@ -11,7 +11,8 @@ html, body {
     background-color: #F2F2F2;
     font-size: 12px;
     font-family: "IBM Plex Sans", serif;
-    overflow: hidden; /* Keep no scrolling if desired */
+    /* Keep NO scrolling on all devices */
+    overflow: hidden;
 }
 
 /* Name in top-left */
@@ -27,7 +28,7 @@ html, body {
     position: fixed;
     top: 20px;
     right: 40px;
-    z-index: 9999; /* ensure it's above images */
+    z-index: 9999; /* above images */
     font-size: 1rem;
     color: #333;
     cursor: pointer;
@@ -40,11 +41,7 @@ html, body {
         display: none;
     }
 
-/* 
-   ========== MENU OVERLAY (No "display: none") ==========
-   We'll use opacity + pointer-events for smooth transitions 
-   instead of toggling display. 
-*/
+/* ========== MENU OVERLAY (no background, no display: none) ========== */
 .menu-overlay {
     position: fixed;
     top: 0;
@@ -60,12 +57,11 @@ html, body {
 }
 
     .menu-overlay.open {
-        /* When open, become fully visible & clickable */
         opacity: 1;
         pointer-events: auto;
     }
 
-/* ========== MENU CONTENT (Slides from Right) ========== */
+/* ========== MENU CONTENT (Slides from Right, 2s) ========== */
 .menu-content {
     position: absolute;
     top: 0;
@@ -76,13 +72,10 @@ html, body {
     backdrop-filter: blur(5px);
     box-shadow: -2px 0 5px rgba(0,0,0,0.2);
     padding: 60px 20px 20px;
-    /* Off-screen by 100% width, so it's invisible horizontally */
-    transform: translateX(100%);
-    /* Slow 2s transition */
-    transition: transform 0.6s ease;
+    transform: translateX(100%); /* off-screen to the right */
+    transition: transform 0.6s ease; /* 2s for slower slide */
 }
 
-/* Slide in from right when .open is on .menu-overlay */
 .menu-overlay.open .menu-content {
     transform: translateX(0);
     transition: transform 0.6s ease;
@@ -143,17 +136,12 @@ html, body {
         opacity: 0.9;
     }
 
-    .item.top {
-        z-index: 20;
-    }
-
 /* ========== OVERLAY FOR ENLARGED IMAGES ========== */
 .image-overlay {
     display: none;
     position: fixed;
     top: 30px;
-    bottom: 0px;
-    height: 100%;
+    bottom: 0;
     left: 0;
     width: 100%;
     justify-content: center;
@@ -210,9 +198,7 @@ html, body {
     cursor: pointer;
 }
 
-    .item.text-item a,
-    .item.text-item a:visited,
-    .item.text-item a:active {
+    .item.text-item a {
         color: inherit;
         text-decoration: none;
     }
@@ -242,12 +228,22 @@ html, body {
 
 /* ========== RESPONSIVE ========== */
 @media (max-width: 768px) {
+    .my-name {
+        font-size: 0.9rem;
+        left: 20px;
+    }
+
     .menu-button {
         font-size: 0.9rem;
+        right: 20px;
     }
 }
 
 @media (min-width: 769px) {
+    .my-name {
+        font-size: 1rem;
+    }
+
     .menu-button {
         font-size: 1rem;
     }
