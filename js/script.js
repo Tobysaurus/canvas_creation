@@ -82,7 +82,6 @@
     }
 
     // Only “click this for chaos” is random. 
-    // The top links are in .top-bar (HTML).
     createTextItem("remix", "italic-text");
 
     // =============== 4. "click this for chaos" => re-randomize images only ===============
@@ -108,7 +107,6 @@
     // =============== 5. Position the newly created text item below top bar ===============
     const textItems = document.querySelectorAll(".text-item");
     textItems.forEach((textItem) => {
-        // skip if it's in top bar (not applicable here, but just in case)
         const tw = textItem.clientWidth;
         const th = textItem.clientHeight;
 
@@ -173,6 +171,34 @@
                 overlay.style.display = "none";
                 overlayImage.style.opacity = "0";
             }, 500);
+        }
+    });
+
+    // =============== 7. Slide-Out Menu Logic ===============
+    const menuButton = document.querySelector('.menu-button');
+    const menuOverlay = document.querySelector('.menu-overlay');
+    const closeButton = document.querySelector('.close-button');
+    const menuContent = document.querySelector('.menu-content');
+
+    // Open the menu
+    menuButton.addEventListener('click', () => {
+        menuOverlay.classList.add('open');
+        // Hide the menu text when menu is open
+        menuButton.classList.add('hide');
+    });
+
+    // Close the menu when clicking the X
+    closeButton.addEventListener('click', () => {
+        menuOverlay.classList.remove('open');
+        menuButton.classList.remove('hide');
+    });
+
+    // Close the menu if user clicks outside the .menu-content
+    menuOverlay.addEventListener('click', (e) => {
+        // if the click target is the overlay (not the menu content or close button)
+        if (!menuContent.contains(e.target) && e.target !== closeButton) {
+            menuOverlay.classList.remove('open');
+            menuButton.classList.remove('hide');
         }
     });
 });
