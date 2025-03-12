@@ -11,16 +11,17 @@ html, body {
     background-color: #F2F2F2;
     font-size: 12px;
     font-family: "IBM Plex Sans", serif;
-    /* Keep NO scrolling on all devices */
+    /* No scrolling on all devices */
     overflow: hidden;
 }
 
 /* Name in top-left */
 .my-name {
-    position: absolute;
+    position: fixed;
     top: 20px;
     left: 40px;
     font-size: 1rem;
+    z-index: 10000;
 }
 
 /* ========== MENU BUTTON (Text Only) ========== */
@@ -28,7 +29,7 @@ html, body {
     position: fixed;
     top: 20px;
     right: 40px;
-    z-index: 9999; /* above images */
+    z-index: 10000;
     font-size: 1rem;
     color: #333;
     cursor: pointer;
@@ -41,91 +42,13 @@ html, body {
         display: none;
     }
 
-/* ========== MENU OVERLAY (no background, no display: none) ========== */
-.menu-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: none; /* no dark overlay */
-    z-index: 9998;
-    /* Start fully transparent and unclickable */
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.1s ease;
-}
-
-    .menu-overlay.open {
-        opacity: 1;
-        pointer-events: auto;
-    }
-
-/* ========== MENU CONTENT (Slides from Right, 2s) ========== */
-.menu-content {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 300px;
-    height: 100%;
-    background-color: #F2F2F2;
-    backdrop-filter: blur(5px);
-    box-shadow: -2px 0 5px rgba(0,0,0,0.2);
-    padding: 60px 20px 20px;
-    transform: translateX(100%); /* off-screen to the right */
-    transition: transform 0.6s ease; /* 2s for slower slide */
-}
-
-.menu-overlay.open .menu-content {
-    transform: translateX(0);
-    transition: transform 0.6s ease;
-}
-
-/* ========== CLOSE BUTTON (X) ========== */
-.close-button {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    font-size: 1.5rem;
-    background: none;
-    border: none;
-    cursor: pointer;
-}
-
-/* ========== MENU LIST ========== */
-.menu-content ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-}
-
-.menu-content li {
-    margin-bottom: 15px;
-    font-size: 1rem;
-    color: #333;
-}
-
-    .menu-content li strong {
-        font-weight: bold;
-    }
-
-.menu-content a {
-    color: #333;
-    text-decoration: none;
-    transition: color 0.2s ease;
-}
-
-    .menu-content a:hover {
-        color: #000;
-    }
-
 /* ========== IMAGES ========== */
 .item {
     position: absolute;
     max-width: 100%;
     height: auto;
     object-fit: contain;
-    opacity: 0; /* Initially invisible */
+    opacity: 0;
     z-index: 10;
     cursor: pointer;
     transition: transform 0.6s ease, opacity 0.3s ease, box-shadow 0.3s ease;

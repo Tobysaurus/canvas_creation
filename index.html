@@ -1,74 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Interactive Material Board</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;700&display=swap">
     <!-- Playfair Display font -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@100;400&display=swap" rel="stylesheet">
-
     <!-- Merriweather and Roboto fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
-
 </head>
-
 <body>
-    <!-- Fixed top bar for links -->
-    <!-- Fixed top bar for name only -->
-    <!-- Fixed top bar for name only -->
-
+    <!-- Name in top-left -->
     <p class="my-name"><strong>Tovya Koh</strong></p>
 
-
-    <!-- Menu "button" (just text) at top-right -->
+    <!-- Menu Button (text-only) at top-right -->
     <div class="menu-button"><strong>MENU</strong></div>
 
-    <!-- Slide-Out Menu Overlay (covers entire screen for "click outside" detection) -->
-    <div class="menu-overlay">
-        <div class="menu-content">
-            <!-- Close button (X) -->
-            <div class="close-button" aria-label="Close Menu">&times;</div>
-            <ul>
-                <li>
-                    <a href="portfolio/index.html"
-                       class="top-link"
-                       target="_blank"
-                       rel="noopener noreferrer">
-                        Selected works
-                    </a>
-                </li>
-                <li>
-                    <a href="https://www.nationalgallery.sg/"
-                       class="top-link"
-                       target="_blank"
-                       rel="noopener noreferrer">
-                        Content editing
-                    </a>
-                </li>
-                <li>
-                    <a href="https://github.com/Tobysaurus"
-                       class="top-link"
-                       target="_blank"
-                       rel="noopener noreferrer">
-                        Coding experiments
-                    </a>
-                </li>
-                <Br />
-                <li><strong>Download</strong></li>
-                <li><a href="https://drive.google.com/file/d/162EAinzIp3gJpUL3y20MuOvlUyglq4ju/view?usp=sharing" target="_blank" rel="noopener noreferrer">UI/UX portfolio</a></li>
-                <li><a href="https://drive.google.com/file/d/1EcakcLBTHmU2aIF6EBkQ4q43UA_spymR/view?usp=sharing" target="_blank" rel="noopener noreferrer">Architecture portfolio</a></li>
-                <li><a href="https://drive.google.com/file/d/1ADGD1XFiOmT6rqnd6au71g94eN1GzGY9/view?usp=sharing" target="_blank" rel="noopener noreferrer">Resume</a></li>
-                <li><a href="https://drive.google.com/file/d/1UGQcKoL4quUWV3GaSfVLHWwP7u0Tr6wr/view?usp=sharing" target="_blank" rel="noopener noreferrer">User research report sample</a></li>
-               <Br />
-                <li><a href="https://www.example.com">About</a></li>
-                <li><a href="mailto:tovyakoh@gmail.com">Contact me</a></li>
+    <!-- Menu Code Integrated Directly -->
+    <nav id="menu">
+        <style>
+            /* Menu Styles (contained in index.html) */
+            #menu {
+                position: fixed;
+                top: 0;
+                right: 0;
+                width: 300px;
+                height: 100%;
+                background-color: #F2F2F2;
+                backdrop-filter: blur(5px);
+                box-shadow: -2px 0 5px rgba(0,0,0,0.2);
+                padding: 60px 20px 20px;
+                transform: translateX(100%); /* Off-screen to the right */
+                transition: transform 2s ease;
+                z-index: 9998;
+            }
 
-            </ul>
-        </div>
-    </div>
+                #menu.open {
+                    transform: translateX(0);
+                }
+
+                #menu .close-button {
+                    position: absolute;
+                    top: 20px;
+                    right: 20px;
+                    font-size: 1.5rem;
+                    background: none;
+                    border: none;
+                    cursor: pointer;
+                }
+
+                #menu ul {
+                    list-style-type: none;
+                    padding: 0;
+                    margin: 0;
+                }
+
+                #menu li {
+                    margin-bottom: 15px;
+                    font-size: 1rem;
+                    color: #333;
+                }
+
+                    #menu li strong {
+                        font-weight: bold;
+                    }
+
+                #menu a {
+                    color: #333;
+                    text-decoration: none;
+                    transition: color 0.2s ease;
+                }
+
+                    #menu a:hover {
+                        color: #000;
+                    }
+        </style>
+        <div class="close-button" aria-label="Close Menu">&times;</div>
+        <ul>
+            <li>
+                <a href="portfolio/index.html" target="_blank" rel="noopener noreferrer">Selected works</a>
+            </li>
+            <li>
+                <a href="https://www.nationalgallery.sg/" target="_blank" rel="noopener noreferrer">Content editing</a>
+            </li>
+            <li>
+                <a href="https://github.com/Tobysaurus" target="_blank" rel="noopener noreferrer">Coding experiments</a>
+            </li>
+            <br />
+            <li><strong>Download</strong></li>
+            <li>
+                <a href="https://drive.google.com/file/d/162EAinzIp3gJpUL3y20MuOvlUyglq4ju/view?usp=sharing" target="_blank" rel="noopener noreferrer">UI/UX portfolio</a>
+            </li>
+            <li>
+                <a href="https://drive.google.com/file/d/1EcakcLBTHmU2aIF6EBkQ4q43UA_spymR/view?usp=sharing" target="_blank" rel="noopener noreferrer">Architecture portfolio</a>
+            </li>
+            <li>
+                <a href="https://drive.google.com/file/d/1ADGD1XFiOmT6rqnd6au71g94eN1GzGY9/view?usp=sharing" target="_blank" rel="noopener noreferrer">Resume</a>
+            </li>
+            <li>
+                <a href="https://drive.google.com/file/d/1UGQcKoL4quUWV3GaSfVLHWwP7u0Tr6wr/view?usp=sharing" target="_blank" rel="noopener noreferrer">User research report sample</a>
+            </li>
+            <br />
+            <li><a href="https://www.example.com">About</a></li>
+            <li><a href="mailto:tovyakoh@gmail.com">Contact me</a></li>
+        </ul>
+    </nav>
 
 
 
@@ -89,6 +127,7 @@
     <img src="images/NGS_Publications_01.png" alt="NGS_Publications_01" class="item top" data-date="2023-08-04" onclick="openPopup(this.src)" )">
     <img src="images/NGS_Publications_02_transparent.png" alt="NGS_Publications_02" class="item top" data-date="2023-08-04">
     <img src="images/NGS_archi_01.png" alt="NGS_archi_01" class="item top" data-date="2024-10-15">
+    <img src="images/history01.png" alt="History map" class="item top" data-date="2025-03-11">
 
     <!-- Coding projects images -->
     <img src="images/joke01.jpg" alt="joke01" class="item top" data-date="2025-03-03">
@@ -143,6 +182,35 @@
 
     <script src="https://cdn.jsdelivr.net/npm/interactjs@1.10.11/dist/interact.min.js"></script>
     <script src="js/script.js"></script>
+
+    <!-- Menu Toggle Script -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const menuButton = document.querySelector('.menu-button');
+            const menu = document.getElementById('menu');
+            const closeButton = menu.querySelector('.close-button');
+
+            // Open menu when button is clicked
+            menuButton.addEventListener('click', () => {
+                menu.classList.add('open');
+                menuButton.classList.add('hide');
+            });
+
+            // Close menu when close button is clicked
+            closeButton.addEventListener('click', () => {
+                menu.classList.remove('open');
+                menuButton.classList.remove('hide');
+            });
+
+            // Close menu if clicking outside menu
+            document.addEventListener('click', (e) => {
+                if (!menu.contains(e.target) && !menuButton.contains(e.target)) {
+                    menu.classList.remove('open');
+                    menuButton.classList.remove('hide');
+                }
+            });
+        });
+    </script>
 
 </body>
 </html>
