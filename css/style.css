@@ -161,6 +161,11 @@ html, body {
         left: 20px;
     }
 
+    .two-col-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
     .menu-button {
         font-size: 0.9rem;
         right: 20px;
