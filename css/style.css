@@ -5,21 +5,23 @@
     box-sizing: border-box;
 }
 
-/* ========== BODY ========== */
+/* 
+   ========== BODY ==========
+   White background, can scroll if content is taller than viewport
+*/
 html, body {
     height: 100%;
-    background-color: #F2F2F2;
+    background-color: #fff; /* pure white */
     font-size: 12px;
     font-family: "IBM Plex Sans", serif;
-    /* No scrolling on all devices */
-    overflow: hidden;
+    overflow: auto; /* allow scrolling */
 }
 
-/* Name in top-left */
+/* Name in top-left (you may not need this if you're using .header .name) */
 .my-name {
     position: fixed;
     top: 20px;
-    left: 40px;
+    left: 0px;
     font-size: 1rem;
     z-index: 10000;
 }
@@ -28,19 +30,22 @@ html, body {
 .menu-button {
     position: fixed;
     top: 20px;
-    right: 40px;
-    z-index: 10000;
+    right: 70px;
+    z-index: 9997;
     font-size: 1rem;
     color: #333;
     cursor: pointer;
     background: none;
     border: none;
     padding: 0;
+    font-family: "IBM Plex Sans", serif;
 }
 
     .menu-button.hide {
         display: none;
     }
+
+
 
 /* ========== IMAGES ========== */
 .item {
@@ -170,4 +175,160 @@ html, body {
     .menu-button {
         font-size: 1rem;
     }
+}
+
+/* 
+   ----------------------------------------------------
+   BELOW IS THE TWO-COLUMN LAYOUT / "BLURRED" MENU BAR
+   ----------------------------------------------------
+*/
+
+/* 
+   1) Fixed header 
+      Instead of a box-shadow over the page, we use a pseudo-element 
+      that creates a fade at the bottom edge of the header.
+*/
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background: #fff; /* pure white */
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* remove the old box-shadow here */
+    /* We'll do the fade with a pseudo-element below */
+}
+
+    .header::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 20px;
+        /* This gradient transitions from white (top) to transparent (bottom),
+       creating a "faded" edge. Adjust the gradient stops as desired. */
+        background: linear-gradient( to bottom, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100% );
+        pointer-events: none; /* so it doesn't block clicks */
+    }
+
+/*
+  2) The container within the header:
+     - Left padding of 20px so "Tovya Koh" is 20px from left boundary
+     - Right padding 30px so "Menu" aligns flush with the container's right boundary
+*/
+.header-container {
+    max-width: 1200px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* name on left, menu on right */
+    padding-left: 20px;
+    padding-right: 30px;
+    margin: 0 auto; /* center horizontally */
+}
+
+.header .name {
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.header .menu-button {
+    /* Additional styling if needed */
+}
+
+/* 
+   3) Main container with same max-width 
+      The background is white, no lines/borders.
+*/
+.main {
+    margin-top: 60px; /* push below the fixed header */
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+    /*background: #fff; */
+}
+
+/* 4) Two-column grid (no lines) */
+.two-col-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* two equal columns */
+    gap: 40px; /* spacing between columns & rows */
+}
+
+/* Each grid item, no border or lines */
+.grid-item {
+    /*  background: #fff;*/
+    padding: 0;
+}
+
+/* Landscape ratio container, no border, no lines */
+.ratio-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 800 / 533; /* ~1.5:1 ratio */
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+    .ratio-container img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: auto;
+        object-fit: cover; /* or 'contain' if you prefer letterboxing */
+    }
+
+    .ratio-container video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Change to "contain" if you want letterboxing */
+    }
+
+.custom-ratio-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 800 / 394; /* Adjust this ratio as needed */
+    margin-bottom: 10px;
+    overflow: hidden;
+    background-color: #eee; /* Light gray background */
+}
+
+    .custom-ratio-container img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* or 'contain' */
+        object-position: center;
+    }
+
+
+/* Project description text below the image */
+.project-description {
+    line-height: 1.4;
+    margin-bottom: 20px; /* spacing after description */
+}
+
+*/
+.special-cell .desktop-container {
+    background: #f2f2f2 !important;
+}
+
+.special-cell .desktop-container img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    object-position: center;
 }

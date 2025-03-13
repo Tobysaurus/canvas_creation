@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Interactive Material Board</title>
+    <title>Two-Column Layout (Blurred Menu Bar)</title>
     <link rel="stylesheet" href="css/style.css">
+
+    <!-- Font links (unchanged) -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;700&display=swap">
     <!-- Playfair Display font -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@100;400&display=swap" rel="stylesheet">
@@ -12,177 +14,158 @@
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Name in top-left -->
-    <p class="my-name"><strong>Tovya Koh</strong></p>
 
-    <!-- Menu Button (text-only) at top-right -->
-    <div class="menu-button"><strong>MENU</strong></div>
-
-    <!-- Menu Code Integrated Directly -->
-    <nav id="menu">
-        <style>
-            /* Menu Styles (contained in index.html) */
-            #menu {
-                position: fixed;
-                top: 0;
-                right: 0;
-                width: 300px;
-                height: 100%;
-                background-color: #F2F2F2;
-                backdrop-filter: blur(5px);
-                box-shadow: -2px 0 5px rgba(0,0,0,0.2);
-                padding: 60px 20px 20px;
-                transform: translateX(100%); /* Off-screen to the right */
-                transition: transform 2s ease;
-                z-index: 9998;
-            }
-
-                #menu.open {
-                    transform: translateX(0);
-                }
-
-                #menu .close-button {
-                    position: absolute;
-                    top: 20px;
-                    right: 20px;
-                    font-size: 1.5rem;
-                    background: none;
-                    border: none;
-                    cursor: pointer;
-                }
-
-                #menu ul {
-                    list-style-type: none;
-                    padding: 0;
-                    margin: 0;
-                }
-
-                #menu li {
-                    margin-bottom: 15px;
-                    font-size: 1rem;
-                    color: #333;
-                }
-
-                    #menu li strong {
-                        font-weight: bold;
+    <!-- Header with blurred bottom edge -->
+    <div class="header">
+        <div class="header-container">
+            <div class="name">Tovya Koh</div>
+            <!-- Menu Code Integrated Directly -->
+            <nav id="menu">
+                <style>
+                    /* Menu Styles (contained in index.html) */
+                    #menu {
+                        position: fixed;
+                        top: 0;
+                        right: 0px;
+                        width: 240px;
+                        height: 100%;
+                        background-color: white;
+                        /*  backdrop-filter: blur(2px);*/
+                        /* box-shadow: -2px 0 5px rgba(0,0,0,0.2);*/
+                        padding: 60px 20px 20px;
+                        transform: translateX(100%); /* Off-screen to the right */
+                        transition: transform 1s ease;
+                        z-index: 9998;
                     }
 
-                #menu a {
-                    color: #333;
-                    text-decoration: none;
-                    transition: color 0.2s ease;
-                }
+                        #menu.open {
+                            transform: translateX(0);
+                        }
 
-                    #menu a:hover {
-                        color: #000;
-                    }
-        </style>
-        <div class="close-button" aria-label="Close Menu">&times;</div>
-        <ul>
-            <li>
-                <a href="portfolio/index.html" target="_blank" rel="noopener noreferrer">Selected works</a>
-            </li>
-            <li>
-                <a href="https://www.nationalgallery.sg/" target="_blank" rel="noopener noreferrer">Content editing</a>
-            </li>
-            <li>
-                <a href="https://github.com/Tobysaurus" target="_blank" rel="noopener noreferrer">Coding experiments</a>
-            </li>
-            <br />
-            <li><strong>Download</strong></li>
-            <li>
-                <a href="https://drive.google.com/file/d/162EAinzIp3gJpUL3y20MuOvlUyglq4ju/view?usp=sharing" target="_blank" rel="noopener noreferrer">UI/UX portfolio</a>
-            </li>
-            <li>
-                <a href="https://drive.google.com/file/d/1EcakcLBTHmU2aIF6EBkQ4q43UA_spymR/view?usp=sharing" target="_blank" rel="noopener noreferrer">Architecture portfolio</a>
-            </li>
-            <li>
-                <a href="https://drive.google.com/file/d/1ADGD1XFiOmT6rqnd6au71g94eN1GzGY9/view?usp=sharing" target="_blank" rel="noopener noreferrer">Resume</a>
-            </li>
-            <li>
-                <a href="https://drive.google.com/file/d/1UGQcKoL4quUWV3GaSfVLHWwP7u0Tr6wr/view?usp=sharing" target="_blank" rel="noopener noreferrer">User research report sample</a>
-            </li>
-            <br />
-            <li><a href="https://www.example.com">About</a></li>
-            <li><a href="mailto:tovyakoh@gmail.com">Contact me</a></li>
-        </ul>
-    </nav>
+                        #menu .close-button {
+                            position: absolute;
+                            top: 20px;
+                            right: 20px;
+                            font-size: 1.5rem;
+                            background: none;
+                            border: none;
+                            cursor: pointer;
+                        }
+
+                        #menu ul {
+                            list-style-type: none;
+                            padding: 0;
+                            margin: 0;
+                        }
+
+                        #menu li {
+                            margin-bottom: 15px;
+                            font-size: 1rem;
+                            color: #333;
+                        }
+
+                            #menu li strong {
+                                font-weight: bold;
+                            }
+
+                        #menu a {
+                            color: #333;
+                            text-decoration: none;
+                            transition: color 0.2s ease;
+                        }
+
+                            #menu a:hover {
+                                color: #000;
+                            }
+                </style>
+                <div class="close-button" aria-label="Close Menu">&times;</div>
+                <ul>
+                    <li>
+                        <a href="https://www.nationalgallery.sg/" target="_blank" rel="noopener noreferrer">Content editing</a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/Tobysaurus" target="_blank" rel="noopener noreferrer">Coding experiments</a>
+                    </li>
+                    <br />
+                    <li><strong>Download</strong></li>
+                    <li>
+                        <a href="https://drive.google.com/file/d/162EAinzIp3gJpUL3y20MuOvlUyglq4ju/view?usp=sharing" target="_blank" rel="noopener noreferrer">UI/UX portfolio</a>
+                    </li>
+                    <li>
+                        <a href="https://drive.google.com/file/d/1EcakcLBTHmU2aIF6EBkQ4q43UA_spymR/view?usp=sharing" target="_blank" rel="noopener noreferrer">Architecture portfolio</a>
+                    </li>
+                    <li>
+                        <a href="https://drive.google.com/file/d/1ADGD1XFiOmT6rqnd6au71g94eN1GzGY9/view?usp=sharing" target="_blank" rel="noopener noreferrer">Resume</a>
+                    </li>
+                    <li>
+                        <a href="https://drive.google.com/file/d/1UGQcKoL4quUWV3GaSfVLHWwP7u0Tr6wr/view?usp=sharing" target="_blank" rel="noopener noreferrer">User research report sample</a>
+                    </li>
+                    <br />
+                    <li><a href="https://www.example.com">About</a></li>
+                    <li><a href="mailto:tovyakoh@gmail.com">Contact me</a></li>
+                </ul>
+            </nav>
 
 
-
-
-    <!-- Images -->
-    <img src="images/20260206_plasticearrings_01.jpg" alt="Thumbnail 1" class="item" data-date="2025-02-04">
-    <img src="images/20260206_plasticearrings_02.jpg" alt="Thumbnail 2" class="item" data-date="2025-02-04">
-
-    <!--Commenting out th flowers
-    <img src="images/flower01.webp" alt="Flower" class="item top" data-date="2025-02-13">
-    <img src="images/flower02.webp" alt="Flower" class="item top" data-date="2025-02-13">
-    <img src="images/flower03.webp" alt="Flower" class="item top" data-date="2025-02-13">
-    <img src="images/flower04.png" alt="Flower" class="item top" data-date="2025-02-13">
-        -->
-    <!-- UX/UI images -->
-    <img src="images/Expandicity_01.png" alt="Expandicity" class="item top" data-date="2022-09-23" data-text="Expandicity, a gamified personal budgeting app">
-    <img src="images/Evernew_Mobile_01_transparent.png" alt="Evernew" class="item top" data-date="2023-04-27" data-text="A website redesign for a secondhand bookstore">
-    <img src="images/NGS_Publications_01.png" alt="NGS_Publications_01" class="item top" data-date="2023-08-04" onclick="openPopup(this.src)" )">
-    <img src="images/NGS_Publications_02_transparent.png" alt="NGS_Publications_02" class="item top" data-date="2023-08-04">
-    <img src="images/NGS_archi_01.png" alt="NGS_archi_01" class="item top" data-date="2024-10-15">
-    <img src="images/history01.png" alt="History map" class="item top" data-date="2025-03-11">
-
-    <!-- Coding projects images -->
-    <img src="images/joke01.jpg" alt="joke01" class="item top" data-date="2025-03-03">
-    <img src="images/n8nflow.png" alt="n8nflow" class="item top" data-date="2025-03-03">
-
-    <!-- THINGS Images -->
-    <img src="images/painting01.png" alt="painting01" class="item" data-date="2021-06-01">
-    <img src="images/painting02.png" alt="painting02" class="item" data-date="2022-06-01">
-    <img src="images/bread-transparent.png" alt="bread" class="item" data-date="2025-01-08">
-    <img src="images/sew01.png" alt="sew01" class="item" data-date="2009-01-01">
-    <img src="images/sew02.png" alt="sew02" class="item" data-date="2009-01-01">
-    <img src="images/pots01.png" alt="pots01" class="item" data-date="2023-01-01">
-
-    <!-- Travel Images -->
-    <img src="images/travel01.png" alt="travel01" class="item" data-date="2013-05-01">
-
-    <!-- Photography -->
-    <img src="images/photo01_20241228.jpg" alt="photo01_20241228" class="item" data-date="2024-12-28">
-    <img src="images/photo02_20241228.jpg" alt="photo02_20241228" class="item" data-date="2024-12-28">
-    <img src="images/photo03_20241228.jpg" alt="photo03_20241228" class="item" data-date="2024-12-28">
-    <img src="images/photo04_20250217.jpg" alt="photo04_20250217" class="item" data-date="2025-02-17">
-
-    <!-- Archi images -->
-    <img src="images/Model01.png" alt="model01" class="item" data-date="2011-11-01">
-    <img src="images/Model02.png" alt="model02" class="item" data-date="2011-11-01">
-    <img src="images/Model03.png" alt="model03" class="item" data-date="2011-11-01">
-    <img src="images/Model04.png" alt="model04" class="item" data-date="2011-11-01">
-    <img src="images/Model05.png" alt="model05" class="item" data-date="2011-11-01">
-    <img src="images/Model06.png" alt="model06" class="item" data-date="2011-11-01">
-    <img src="images/varyingreptition01.png" alt="varyingreptition01" class="item" data-date="2010-04-01">
-    <img src="images/varyingrepetition02.png" alt="varyingreptition02" class="item" data-date="2010-04-01">
-    <img src="images/varyingrepetition03.png" alt="varyingreptition03" class="item" data-date="2010-04-01">
-    <img src="images/btbrown01.png" alt="btbrown01" class="item" data-date="2012-05-01">
-    <img src="images/btbrown02.png" alt="btbrown02" class="item" data-date="2012-05-01">
-    <img src="images/btbrown03.png" alt="btbrown03" class="item" data-date="2012-05-01">
-    <img src="images/btbrown04.png" alt="btbrown04" class="item" data-date="2012-05-01">
-    <img src="images/btbrown05.png" alt="btbrown05" class="item" data-date="2012-05-01">
-    <img src="images/kerala01.png" alt="kerala01" class="item" data-date="2013-10-01">
-    <img src="images/exhib01.png" alt="exhib01" class="item" data-date="2012-02-01">
-    <img src="images/exhib02.png" alt="exhib02" class="item" data-date="2012-02-01">
-    <img src="images/yishunpoly01.png" alt="yishunpoly01" class="item" data-date="2018-01-01">
-    <img src="images/Archi_2023-12-20.png" alt="Archi_2023-12-20" class="item" data-date="2023-12-20">
-    <img src="images/expo01.png" alt="expo01" class="item" data-date="2021-01-01">
-    <img src="images/expo02.png" alt="expo02" class="item" data-date="2021-01-01">
-    <img src="images/expo03.png" alt="expo03" class="item" data-date="2021-01-01">
-
-    <!-- Overlay -->
-    <div class="image-overlay">
-        <img class="overlay-image">
-        <div class="textbox"></div> <!-- Empty div where JavaScript will insert the text -->
+            <button class="menu-button"><strong>MENU</strong></button>
+        </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/interactjs@1.10.11/dist/interact.min.js"></script>
-    <script src="js/script.js"></script>
+    <!-- Main content -->
+    <div class="main">
+        <!-- Two-column grid -->
+        <div class="two-col-grid">
 
+            <!-- LEFT COLUMN (top row) -->
+            <div class="grid-item">
+                <div class="ratio-container">
+                    <video autoplay loop muted playsinline>
+                        <source src="video/Expandicity3.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                        <!--     <img src="images\Illustrator\1x\Artboard 1.png" alt="Example Left Image">-->
+</div>
+                <p class="project-description">
+                    Expandicity – a gamified personal budgeting mobile application
+                </p>
+            </div>
+
+            <!-- RIGHT COLUMN (top row) -->
+            <div class="grid-item">
+                <div class="ratio-container">
+                    <!-- <img src="images\Illustrator\Evernew.png" alt="Example Right Image"> -->
+                    <img src="video\Evernew.gif" alt="Example Right Image">
+                </div>
+                <p class="project-description">
+                    Evernew – redesign for a secondhand bookstore
+                </p>
+            </div>
+
+
+            <!-- Special cell: uses light gray background and centers the image -->
+            <div class="grid-item">
+      
+                <div class="custom-ratio-container">
+                    <img src="images/illustrator/NGSwebsite.png" alt="NGS">
+                </div>
+                    <p class="project-description">
+                        National Gallery Singapore – copyediting and wireframing
+
+                    </p>
+                </div>
+
+
+                <!-- RIGHT COLUMN (bottom row) -->
+            <div class="grid-item">
+                <div class="custom-ratio-container">
+                    <img src="video/NGS-01.gif" alt="National Gallery Singapore">
+                </div>
+                <p class="project-description">
+                    National Gallery Singapore – user research and experience design
+                </p>
+            </div>
+
+            </div> <!-- end two-col-grid -->
+        </div> <!-- end main -->
     <!-- Menu Toggle Script -->
     <script>
         document.addEventListener("DOMContentLoaded", function () {
@@ -211,6 +194,5 @@
             });
         });
     </script>
-
 </body>
 </html>
