@@ -154,35 +154,8 @@ html, body {
         color: #303030;
     }
 
-/* ========== RESPONSIVE ========== */
-@media (max-width: 768px) {
-    .my-name {
-        font-size: 0.9rem;
-        left: 20px;
-    }
 
-    .two-col-grid {
-        grid-template-columns: 1fr;
-    }
-}
 
-    .menu-button {
-        font-size: 0.9rem;
-        right: 20px;
-    }
-}
-
-@media (min-width: 769px) {
-    .my-name {
-        font-size: 1rem;
-    }
-
-    .menu-button {
-        font-size: 1rem;
-        right: 100px;
-
-    }
-}
 
 /* 
    ----------------------------------------------------
@@ -338,4 +311,32 @@ html, body {
     height: auto;
     object-fit: contain;
     object-position: center;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+    .my-name {
+        font-size: 0.9rem;
+        left: 20px;
+    }
+
+    .two-col-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .menu-button {
+        font-size: 0.9rem;
+        right: 20px;
+    }
+}
+
+@media (min-width: 769px) {
+    .my-name {
+        font-size: 1rem;
+    }
+
+    .menu-button {
+        font-size: 1rem;
+        right: 100px;
+    }
 }
