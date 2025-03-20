@@ -302,7 +302,7 @@ html, body {
 }
 
     .project-description a {
-        color: inherit;
+        color: #303030;
         font-weight: bold;
     }
 
