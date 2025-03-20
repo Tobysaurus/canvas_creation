@@ -301,6 +301,11 @@ html, body {
     margin-bottom: 20px; /* spacing after description */
 }
 
+    .project-description a {
+        color: inherit;
+        font-weight: bold;
+    }
+
 */
 .special-cell .desktop-container {
     background: #f2f2f2 !important;
