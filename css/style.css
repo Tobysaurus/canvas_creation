@@ -299,6 +299,7 @@ html, body {
 .project-description {
     line-height: 1.4;
     margin-bottom: 20px; /* spacing after description */
+    color: #303030;
 }
 
     .project-description a {
